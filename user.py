@@ -9,6 +9,7 @@ class user:
         self.UserID = 0
         self.isLoggedIn = 0
 
+
     def login(self):
         email = input("What is your email? > ")
         password = input("What is your password? > ")
@@ -39,11 +40,13 @@ class user:
 
         return self.isLoggedIn
        
+
     def logout(self):
        self.UserID = 0
        self.isLoggedIn = 0
 
        return self.isLoggedIn
+
 
     def createAccount(self):
         try:
@@ -63,9 +66,57 @@ class user:
         City = input("What city do you live in? > ")
         State = input("What state do you live in? > ")
         Zip = int(input("What is your zip code? > "))
+
         Payment = int(input("What is your credit card number (Enter 16 digits with no spaces) > "))
+        while (len(str(Payment)) < 16 or len(str(Payment)) > 16):
+            Payment = int(input("There should be 16 digits. Please try again > "))
+
 
         cursor.execute(f'INSERT INTO user (UserID, Email, Password, FirstName, LastName, Address, City, State, Zip, Payment) VALUES ("{userID}", "{Email}", "{Password}", "{FirstName}", "{LastName}", "{Address}", "{City}", "{State}", "{Zip}", "{Payment}")')
         connection.commit()
 
         connection.close()
+    
+
+    def viewAccountInformation(self):
+        try:
+            connection = sqlite3.connect("shopping.db")
+        except:
+            print("Connection to users database failed")
+            sys.exit()
+
+        cursor = connection.cursor()
+
+        try:
+            cursor.execute(f'SELECT * FROM user WHERE UserID = "{self.UserID}"')
+            results = cursor.fetchall()
+            print(f'UserID: {results[0][0]}')
+            print(f'Email: {results[0][1]}')
+            print(f'Password: {results[0][2]}')
+            print(f'First Name: {results[0][3]}')
+            print(f'Last Name: {results[0][4]}')
+            print(f'Address: {results[0][5]}')
+            print(f'City: {results[0][6]}')
+            print(f'State: {results[0][7]}')
+            print(f'Zip Code: {results[0][8]}')
+            print(f'Credit Card Number: {results[0][9]}')
+        except:
+            print("User is not in the database!")
+
+        connection.close()
+
+
+    def deleteAccount(self):
+        try:
+            connection = sqlite3.connect("shopping.db")
+        except:
+            print("Connection to users database failed")
+            sys.exit()
+
+        cursor = connection.cursor()
+
+        cursor.execute(f'DELETE FROM user WHERE UserID = "{self.UserID}"')
+        connection.commit()
+
+        connection.close()
+        
