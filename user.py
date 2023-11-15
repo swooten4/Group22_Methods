@@ -49,6 +49,7 @@ class user:
 
 
     def createAccount(self):
+        print("-_-_- Create Account -_-_-")
         try:
             connection = sqlite3.connect("shopping.db")
         except:
@@ -84,12 +85,13 @@ class user:
         while (len(str(Zip)) != 5):
             Zip = int(input("There should be 5 digits in a zip code. Please try again > "))
 
-        Payment = int(input("What is your credit card number (Enter 16 digits with no spaces) > "))
-        while (len(str(Payment)) != 16):
+        Payment = input("What is your credit card number (Enter 16 digits with no spaces) > ")
+        while (len(Payment) != 16):
             Payment = int(input("There should be 16 digits. Please try again > "))
 
 
-        cursor.execute(f'INSERT INTO user (UserID, Email, Password, FirstName,\
+        # insertion into the database table. Hooray!
+        cursor.execute(f'INSERT INTO {self.table} (UserID, Email, Password, FirstName,\
                         LastName, Address, City, State, Zip, Payment)\
                         VALUES ("{userID}", "{Email}", "{Password}", "{FirstName}",\
                         "{LastName}", "{Address}", "{City}", "{State}", "{Zip}", "{Payment}")')
@@ -123,7 +125,7 @@ class user:
             print(f'Zip Code: {results[0][8]}')
             print(f'Credit Card Number: {results[0][9]}')
         except:
-            print("User is not in the database!")
+            print("Error! User is not in the database!")
 
         connection.close()
 
@@ -132,22 +134,4 @@ class user:
 
     def getLoggedIn(self):
         return self.isLoggedIn
-
-
-
-
-    # DELETE LATER. Hahah delete the delete accout function. There's an irony in that.
-    def deleteAccount(self):
-        try:
-            connection = sqlite3.connect("shopping.db")
-        except:
-            print("Connection to users database failed")
-            sys.exit()
-
-        cursor = connection.cursor()
-
-        cursor.execute(f'DELETE FROM user WHERE UserID = "{self.UserID}"')
-        connection.commit()
-
-        connection.close()
         
