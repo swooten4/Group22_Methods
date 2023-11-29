@@ -23,6 +23,8 @@ class BookInventory:
         rows = cursor.fetchall()
         for row in rows:
             print(row)
+        
+        connection.close()
 
     def search_inventory(self, isbn):
 
@@ -41,6 +43,8 @@ class BookInventory:
             print(row)
         else:
             print("Book not found in inventory.")
+
+        connection.close()
 
     def decrease_stock(self, isbn):
 
@@ -69,11 +73,5 @@ class BookInventory:
         else:
             print("Book not found in inventory.")
 
-    def __del__(self):
-        try:
-            connection = sqlite3.connect(self.database)
-        except:
-            print("Connection to users database failed")
-            sys.exit()
-            
         connection.close()
+    
