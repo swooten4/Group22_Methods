@@ -1,7 +1,9 @@
 from user import user
+from Inventory import BookInventory
 # add other statements to include finished classes later
 
 user = user("shopping.db","user")
+inventory = BookInventory("shopping.db", "inventory")
 
 # First Menu
 while(1):
@@ -47,7 +49,23 @@ while(1):
 
         # Another menu for inventory interaction.
         elif(option == 3):
-            print("placeholder!")
+            print("1. View Inventory")
+            print("2. Search Inventory")
+            print("3. Go Back")
+            inventory_option = int(input("Please select an option > "))
+
+            while inventory_option not in {1, 2, 3}:
+                inventory_option = int(input("Please select a valid option. > "))
+
+            if inventory_option == 1:
+                inventory.view_inventory()
+
+            elif inventory_option == 2:
+                inventory.search_inventory()
+
+            else:
+                break
+
 
         # Another menu in this loop for cart interaction.
         else:
