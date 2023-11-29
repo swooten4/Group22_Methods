@@ -16,9 +16,9 @@ class BookInventory:
             print("Connection to users database failed")
             sys.exit()
         
-        cursor = connection.cursor
+        cursor = connection.cursor()
 
-        query = f"SELECT * FROM {self.tableName}"
+        query = f"SELECT * FROM {self.table}"
         cursor.execute(query)
         rows = cursor.fetchall()
         for row in rows:
@@ -35,9 +35,9 @@ class BookInventory:
             print("Connection to users database failed")
             sys.exit()
 
-        cursor = connection.cursor
+        cursor = connection.cursor()
 
-        query = f"SELECT * FROM {self.tableName} WHERE ISBN = ?"
+        query = f"SELECT * FROM {self.table} WHERE ISBN = ?"
         cursor.execute(query, (isbn,))
         row = cursor.fetchone()
         if row:
@@ -55,9 +55,9 @@ class BookInventory:
             print("Connection to users database failed")
             sys.exit()
 
-        cursor = connection.cursor
+        cursor = connection.cursor()
 
-        query_check_stock = f"SELECT Stock FROM {self.tableName} WHERE ISBN = ?"
+        query_check_stock = f"SELECT Stock FROM {self.table} WHERE ISBN = ?"
         cursor.execute(query_check_stock, (isbn,))
         current_stock = cursor.fetchone()
 
@@ -65,7 +65,7 @@ class BookInventory:
             current_stock = current_stock[0]
             if current_stock > 0:
                 new_stock = current_stock - 1
-                query_update_stock = f"UPDATE {self.tableName} SET Stock = ? WHERE ISBN = ?"
+                query_update_stock = f"UPDATE {self.table} SET Stock = ? WHERE ISBN = ?"
                 cursor.execute(query_update_stock, (new_stock, isbn))
                 connection.commit()
                 print(f"Stock for {isbn} decreased. New stock: {new_stock}")
