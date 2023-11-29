@@ -29,6 +29,7 @@ class BookInventory:
             print("Pages:", row[4])
             print("ReleaseDate:", row[5])
             print("Stock:", row[6])
+            print()
         
         connection.close()
 
@@ -54,6 +55,7 @@ class BookInventory:
             print("Pages:", row[4])
             print("ReleaseDate:", row[5])
             print("Stock:", row[6])
+            print()
         else:
             print("Book not found in inventory.")
 
