@@ -26,7 +26,8 @@ class BookInventory:
         
         connection.close()
 
-    def search_inventory(self, isbn):
+    def search_inventory(self):
+        isbn = input("Enter the ISBN to search: ")
 
         try:
             connection = sqlite3.connect(self.database)
