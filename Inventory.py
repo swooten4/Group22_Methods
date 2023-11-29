@@ -22,7 +22,13 @@ class BookInventory:
         cursor.execute(query)
         rows = cursor.fetchall()
         for row in rows:
-            print(row)
+            print("ISBN:", row[0])
+            print("Title:", row[1])
+            print("Author:", row[2])
+            print("Genre:", row[3])
+            print("Pages:", row[4])
+            print("ReleaseDate:", row[5])
+            print("Stock:", row[6])
         
         connection.close()
 
@@ -41,7 +47,13 @@ class BookInventory:
         cursor.execute(query, (isbn,))
         row = cursor.fetchone()
         if row:
-            print(row)
+            print("ISBN:", row[0])
+            print("Title:", row[1])
+            print("Author:", row[2])
+            print("Genre:", row[3])
+            print("Pages:", row[4])
+            print("ReleaseDate:", row[5])
+            print("Stock:", row[6])
         else:
             print("Book not found in inventory.")
 
