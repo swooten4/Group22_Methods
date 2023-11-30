@@ -84,7 +84,7 @@ class cart:
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM cart")
         results = cursor.fetchall()
-        inventory = 
+        inventory = BookInventory()
         
         if result:
             for row in result:
