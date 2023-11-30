@@ -87,13 +87,13 @@ while(1):
             elif(cartChoice == 2):
                 addUserChoice = int(input("Please enter the ISBN of the item you want added "))
                 ID = user.getUserID()
-                cart.addItem(ID, isbn)
+                cart.addItem(ID, addUserChoice)
                 print()
         
             elif(cartChoice == 3):
                 removeUserChoice = int(input("Please enter the ISBN of the item you want removed "))
                 ID = user.getUserID()
-                cart.removeItem(ID, isbn)
+                cart.removeItem(ID, removeUserChoice)
                 print()
             
             elif(cartChoice == 4):
