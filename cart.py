@@ -81,7 +81,6 @@ class cart:
         except:
             print("Failed")
             sys.exit()
-            print()
             
         cursor = connection.cursor()
         cursor.execute("SELECT ISBN, Quantity FROM cart WHERE userID = ?, (userID)")
