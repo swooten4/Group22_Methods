@@ -18,6 +18,8 @@ class cart:
             sys.exit()
         cursor = connection.cursor()
     ## WEEK 7
+        query = f"SELECT * FROM {inventoryDatabase} WHERE ISBN in (SELECT ISBN FROM cart WHERE userID = ?)"
+        cursor.execute(query,(userID,))
         results = cursor.fetchall()
 
         if results:
