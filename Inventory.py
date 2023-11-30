@@ -34,7 +34,7 @@ class BookInventory:
         connection.close()
 
     def search_inventory(self):
-        isbn = input("Enter the ISBN to search: ")
+        title = input("Enter the Title to search: ")
 
         try:
             connection = sqlite3.connect(self.database)
@@ -44,9 +44,9 @@ class BookInventory:
 
         cursor = connection.cursor()
 
-        query = f"SELECT * FROM {self.table} WHERE ISBN = ?"
-        cursor.execute(query, (isbn,))
-        row = cursor.fetchone()
+        query = f"SELECT * FROM {self.table} WHERE Title LIKE ?"
+        cursor.execute(query, ('%' + title + '%',))
+        row = cursor.fetchall()
         if row:
             print("ISBN:", row[0])
             print("Title:", row[1])
