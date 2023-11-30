@@ -74,10 +74,10 @@ while(1):
             print("3. Remove an Item from Cart")
             print("4. Check Out")
             print("5. Go Back")
-            cartChoice = int(input("Please select an option"))
+            cartChoice = int(input("Please select an option "))
 
             while (cartChoice != 1 or 2 or 3 or 4 or 5):
-                cartChoice = int(input("Please select a vaild option"))
+                cartChoice = int(input("Please select a vaild option "))
                 
             if(cartChoice == 1):
                 ID = user.getUserID()
@@ -85,13 +85,13 @@ while(1):
                 print()
                 
             elif(cartChoice == 2):
-                addUserChoice = int(input("Please enter the ISBN of the item you want added"))
+                addUserChoice = int(input("Please enter the ISBN of the item you want added "))
                 ID = user.getUserID()
                 cart.addItem(ID, isbn)
                 print()
         
             elif(cartChoice == 3):
-                removeUserChoice = int(input("Please enter the ISBN of the item you want removed"))
+                removeUserChoice = int(input("Please enter the ISBN of the item you want removed "))
                 ID = user.getUserID()
                 cart.removeItem(ID, isbn)
                 print()
