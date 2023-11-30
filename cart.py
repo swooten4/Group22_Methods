@@ -45,7 +45,7 @@ class cart:
             print("Error: Connection to database failed")
             sys.exit()
         cursor = connection.cursor()
-        quantity = int(input("Preferred quantity of this item:"))
+        quantity = int(input("Preferred quantity of this item: "))
         ##INSERT week 8 videos 
         ##FIX ME
         query = "INSERT INTO cart (userID, ISBN, Quantity) VALUES (?, ?, ?)"
