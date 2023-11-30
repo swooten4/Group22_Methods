@@ -84,8 +84,8 @@ class cart:
             print()
             
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM cart")
-        results = cursor.fetchall()
+        cursor.execute("SELECT ISBN, Quantity FROM cart WHERE userID = ?, (userID)")
+        result = cursor.fetchall()
         inventory = BookInventory()
         
         if result:
