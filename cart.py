@@ -52,7 +52,7 @@ class cart:
         cursor.execute(query, (userID, isbn, quantity))
         connection.commit()
         
-        print(cursor.rowcount, "table  updated")
+        print("table  updated")
         print()
         
         connection.close()
