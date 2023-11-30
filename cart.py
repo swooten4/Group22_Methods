@@ -83,6 +83,7 @@ class cart:
             sys.exit()
             
         cursor = connection.cursor()
+        
         cursor.execute("SELECT ISBN, Quantity FROM cart WHERE userID = ?", (userID)")
         result = cursor.fetchall()
         inventory = BookInventory()
@@ -96,7 +97,7 @@ class cart:
                     inventory.decrease_stock(isbn)
 
             query = "DELETE FROM cart WHERE userID = ?"
-            data = (userID)
+            data = (userID,)
             cursor.execute(query, data)
             connection.commit()
 
