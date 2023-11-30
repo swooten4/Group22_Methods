@@ -1,5 +1,6 @@
 from user import user
 from Inventory import BookInventory
+from cart import cart
 # add other statements to include finished classes later
 
 user = user("shopping.db","user")
@@ -16,20 +17,21 @@ while(1):
         option = int(input("Please select a valid option. > "))
 
     if(option == 1):
-        user.login()
         print()
+        user.login()
+
+        if(user.getLoggedIn() == 1):
+            print("Login successfuL!")
 
     elif(option == 2):
         user.createAccount()
-        print()
 
     else:
         break
 
     # Enter second menu upon successful login.
     while(user.getLoggedIn() == 1):
-        
-        print("Login successfuL!")
+        print()
         print("1. Logout")
         print("2. View Account Information")
         print("3. Inventory Information")
@@ -41,72 +43,71 @@ while(1):
 
         if(option == 1):
             user.logout()
-            print("Logged out!")
+            print("Logged out!\n")
 
         elif(option == 2):
+            print("\nAccount Information:")
             user.viewAccountInformation()
-            print()
 
         # Another menu for inventory interaction.
         elif(option == 3):
-            print("1. View Inventory")
-            print("2. Search Inventory")
-            print("3. Go Back")
-            inventory_option = int(input("Please select an option > "))
+            while(1):
+                print()
+                print("1. View Inventory")
+                print("2. Search Inventory")
+                print("3. Go Back")
+                inventory_option = int(input("Please select an option > "))
 
-            while inventory_option not in {1, 2, 3}:
-                inventory_option = int(input("Please select a valid option. > "))
+                while inventory_option not in {1, 2, 3}:
+                    inventory_option = int(input("Please select a valid option. > "))
 
-            if inventory_option == 1:
-                inventory.view_inventory()
+                if inventory_option == 1:
+                    print("\nBooks in inventory:")
+                    inventory.view_inventory()
 
-            elif inventory_option == 2:
-                inventory.search_inventory()
+                elif inventory_option == 2:
+                    inventory.search_inventory()
 
-            else:
-                break
+                else:
+                    break
 
 
         # Another menu in this loop for cart interaction.
         else:
             cart = cart("shopping.db","cart")
             while(1):
+                print()
                 print("1. View Cart")
                 print("2. Add Items to Cart")
                 print("3. Remove an Item from Cart")
                 print("4. Check Out")
                 print("5. Go Back")
-                cartChoice = int(input("Please select an option "))
+                cartChoice = int(input("Please select an option > "))
 
                 while cartChoice not in {1, 2, 3, 4, 5}:
-                    cartChoice = int(input("Please select a vaild option "))
+                    cartChoice = int(input("Please select a vaild option > "))
                 
                 if(cartChoice == 1):
                     ID = user.getUserID()
+                    print("\nItems currently in cart:")
                     cart.viewCart(ID, "inventory")
-                    print()
                 
                 elif(cartChoice == 2):
-                    addUserChoice = int(input("Please enter the ISBN of the item you want added "))
+                    addUserChoice = int(input("Please enter the ISBN of the item you want added > "))
                     ID = user.getUserID()
                     cart.addItem(ID, addUserChoice)
-                    print()
         
                 elif(cartChoice == 3):
-                    removeUserChoice = int(input("Please enter the ISBN of the item you want removed "))
+                    removeUserChoice = int(input("Please enter the ISBN of the item you want removed > "))
                     ID = user.getUserID()
                     cart.removeItem(ID, removeUserChoice)
-                    print()
             
                 elif(cartChoice == 4):
                     ID = user.getUserID()
                     cart.checkOut(ID)
-                    print()
             
                 elif(cartChoice == 5):
                     break
-            
-
                 
         
 
