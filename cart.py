@@ -83,10 +83,12 @@ class cart:
             sys.exit()
             
         cursor = connection.cursor()
-        
-        cursor.execute("SELECT ISBN, Quantity FROM cart WHERE userID = ?", (userID)")
+
+        query = "SELECT ISBN, Quantity FROM cart WHERE userID = ?"
+        cursor.execute(query,(userID,))
         result = cursor.fetchall()
-        inventory = BookInventory()
+        
+        inventory = BookInventory(self.database, "inventory")
         
         if result:
             for row in result:
