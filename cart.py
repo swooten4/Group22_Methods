@@ -82,6 +82,7 @@ class cart:
             print()
             
         cursor = connection.cursor()
+        results = cursor.fetchall()
         
         if result:
             for row in result:
