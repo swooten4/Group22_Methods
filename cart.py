@@ -83,7 +83,7 @@ class cart:
             sys.exit()
             
         cursor = connection.cursor()
-        cursor.execute("SELECT ISBN, Quantity FROM cart WHERE userID = ?, (userID)")
+        cursor.execute("SELECT ISBN, Quantity FROM cart WHERE userID = ?," (userID)")
         result = cursor.fetchall()
         inventory = BookInventory()
         
