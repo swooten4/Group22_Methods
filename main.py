@@ -69,7 +69,34 @@ while(1):
 
         # Another menu in this loop for cart interaction.
         else:
-            print("placeholder!")
+            print("1. View Cart")
+            print("2. Add Items to Cart")
+            print("3. Remove an Item from Cart")
+            print("4. Check Out")
+            print("5. Go Back")
+            cartChoice = int(input("Please select an option"))
+            
+            while (cartChoice != 1 or 2 or 3 or 4 or 5):
+                cartChoice = int(input("Please select a vaild option"))
+                
+            if(cartChoice == 1):
+                cart.viewCart()
+                print()
+                
+            elif(cartChoice == 2):
+                cart.addItem()
+                print()
+        
+            elif(cartChoice == 3):
+                cart.removeItem()
+                print()
+            
+            elif(cartChoice == 4):
+                cart.checkOut()
+                print()
+            
+            elif(cartChoice == 5):
+                break
                 
         
 
