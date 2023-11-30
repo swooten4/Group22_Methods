@@ -65,7 +65,7 @@ class cart:
             print("failed connection")
             
         cursor = connection.cursor()
-        cursor.execute("DELETE FROM cart WHERE ISBN = ? AND userID = ?'", (isbn, userID))
+        cursor.execute("DELETE FROM cart WHERE ISBN = ? AND userID = ?", (isbn, userID))
         
         connection.commit()
         
