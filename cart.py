@@ -82,6 +82,7 @@ class cart:
             print()
             
         cursor = connection.cursor()
+        cursor.execute("SELECT * FROM cart")
         results = cursor.fetchall()
         
         if result:
