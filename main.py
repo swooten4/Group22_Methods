@@ -69,40 +69,42 @@ while(1):
 
         # Another menu in this loop for cart interaction.
         else:
-            print("1. View Cart")
-            print("2. Add Items to Cart")
-            print("3. Remove an Item from Cart")
-            print("4. Check Out")
-            print("5. Go Back")
-            cartChoice = int(input("Please select an option "))
+            cart = cart("shopping.db","cart")
+            while(1):
+                print("1. View Cart")
+                print("2. Add Items to Cart")
+                print("3. Remove an Item from Cart")
+                print("4. Check Out")
+                print("5. Go Back")
+                cartChoice = int(input("Please select an option "))
 
-            while (cartChoice != 1 or 2 or 3 or 4 or 5):
-                cartChoice = int(input("Please select a vaild option "))
+                while cartChoice not in {1, 2, 3, 4, 5}:
+                    cartChoice = int(input("Please select a vaild option "))
                 
-            if(cartChoice == 1):
-                ID = user.getUserID()
-                cart.viewCart(ID, "inventory")
-                print()
+                if(cartChoice == 1):
+                    ID = user.getUserID()
+                    cart.viewCart(ID, "inventory")
+                    print()
                 
-            elif(cartChoice == 2):
-                addUserChoice = int(input("Please enter the ISBN of the item you want added "))
-                ID = user.getUserID()
-                cart.addItem(ID, addUserChoice)
-                print()
+                elif(cartChoice == 2):
+                    addUserChoice = int(input("Please enter the ISBN of the item you want added "))
+                    ID = user.getUserID()
+                    cart.addItem(ID, addUserChoice)
+                    print()
         
-            elif(cartChoice == 3):
-                removeUserChoice = int(input("Please enter the ISBN of the item you want removed "))
-                ID = user.getUserID()
-                cart.removeItem(ID, removeUserChoice)
-                print()
+                elif(cartChoice == 3):
+                    removeUserChoice = int(input("Please enter the ISBN of the item you want removed "))
+                    ID = user.getUserID()
+                    cart.removeItem(ID, removeUserChoice)
+                    print()
             
-            elif(cartChoice == 4):
-                ID = user.getUserID()
-                cart.checkOut(ID)
-                print()
+                elif(cartChoice == 4):
+                    ID = user.getUserID()
+                    cart.checkOut(ID)
+                    print()
             
-            elif(cartChoice == 5):
-                break
+                elif(cartChoice == 5):
+                    break
             
 
                 
