@@ -21,6 +21,7 @@ class BookInventory:
         query = f"SELECT * FROM {self.table}"
         cursor.execute(query)
         rows = cursor.fetchall()
+
         for row in rows:
             print("ISBN:", row[0])
             print("Title:", row[1])
@@ -46,16 +47,18 @@ class BookInventory:
 
         query = f"SELECT * FROM {self.table} WHERE Title LIKE ?"
         cursor.execute(query, ('%' + title + '%',))
-        row = cursor.fetchall()
-        if row:
-            print("ISBN:", row[0])
-            print("Title:", row[1])
-            print("Author:", row[2])
-            print("Genre:", row[3])
-            print("Pages:", row[4])
-            print("ReleaseDate:", row[5])
-            print("Stock:", row[6])
-            print()
+        result = cursor.fetchall()
+
+        if result:
+            for row in result:
+                print("ISBN:", row[0])
+                print("Title:", row[1])
+                print("Author:", row[2])
+                print("Genre:", row[3])
+                print("Pages:", row[4])
+                print("ReleaseDate:", row[5])
+                print("Stock:", row[6])
+                print()
         else:
             print("Book not found in inventory.")
 
